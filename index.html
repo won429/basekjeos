@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>KBO League Schedule - 파일 분리 구조</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @font-face { font-family: 'KBO-Dia-Gothic'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff') format('woff'); font-weight: 700; font-style: normal; }
+        @font-face { font-family: 'KBO-Dia-Gothic'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_medium.woff') format('woff'); font-weight: 500; font-style: normal; }
+        
+        body { font-family: 'KBO-Dia-Gothic', sans-serif; background-color: #030303; color: #f8fafc; overflow: hidden; -webkit-tap-highlight-color: transparent; }
+        
+        /* 하단 메뉴 디자인 CSS */
+        .bg-point { background-color: #EA0029 !important; }
+        #bottom-nav .bg-\[\#1C1C1E\] { background: rgba(15, 15, 18, 1) !important; backdrop-filter: blur(30px) saturate(200%); -webkit-backdrop-filter: blur(30px) saturate(200%); border: 1px solid rgba(255, 255, 255, 0.1) !important; border-radius: 100px !important; box-shadow: 0 20px 40px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.1) !important; padding: 6px !important; }
+        #nav-indicator { background: #EA0029 !important; box-shadow: 0 0 12px rgba(234, 0, 41, 0.2) !important; border-radius: 100px !important; height: calc(100% - 12px) !important; top: 6px !important; border: none !important; transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    </style>
+</head>
+<body class="w-full h-[100dvh] flex justify-center items-center">
+    <div id="mobile-wrapper" class="w-full h-full max-w-[430px] relative z-10 flex flex-col overflow-hidden sm:border-x border-white/10 sm:shadow-2xl">
+        
+        <!-- 동적으로 외부 파일 내용이 들어갈 컨테이너 -->
+        <div id="content-container" class="flex-1 w-full h-full overflow-y-auto pb-[100px]">
+            <!-- 이 곳에 fairy.html, home.html 등의 내용이 교체되며 들어갑니다. -->
+        </div>
+
+        <!-- 하단 메뉴바 (고정) -->
+        <nav id="bottom-nav" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-[380px] px-2 touch-pan-x select-none">
+            <div class="flex items-center justify-between bg-[#1C1C1E] relative">
+                <div id="nav-indicator" class="absolute bg-point z-0 nav-transition" style="left: 4px; width: 66px;"></div>
+                <button class="relative py-1.5 flex-1 rounded-full group z-10 active:scale-95 transition-transform" onclick="switchTab(0, this)">
+                    <div class="flex flex-col items-center gap-0.5 pointer-events-none">
+                        <i class="fa-solid fa-wand-magic-sparkles text-base text-white"></i>
+                        <span class="text-[10px] font-bold text-white">요정</span>
+                    </div>
+                </button>
+                <button class="relative py-1.5 flex-1 rounded-full group z-10 active:scale-95 transition-transform" onclick="switchTab(1, this)">
+                    <div class="flex flex-col items-center gap-0.5 pointer-events-none">
+                        <i class="fa-solid fa-house text-base text-gray-400"></i>
+                        <span class="text-[10px] font-medium text-gray-400">홈</span>
+                    </div>
+                </button>
+                <button class="relative py-1.5 flex-1 rounded-full group z-10 active:scale-95 transition-transform" onclick="switchTab(2, this)">
+                    <div class="flex flex-col items-center gap-0.5 pointer-events-none">
+                        <i class="fa-solid fa-trophy text-base text-gray-400"></i>
+                        <span class="text-[10px] font-medium text-gray-400">순위</span>
+                    </div>
+                </button>
+                <button class="relative py-1.5 flex-1 rounded-full group z-10 active:scale-95 transition-transform" onclick="switchTab(3, this)">
+                    <div class="flex flex-col items-center gap-0.5 pointer-events-none">
+                        <i class="fa-solid fa-headphones text-base text-gray-400"></i>
+                        <span class="text-[10px] font-medium text-gray-400">응원가</span>
+                    </div>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 탭 전환 및 외부 파일 호출 스크립트 -->
+    <script>
+        // 불러올 파일들의 이름 목록
+        const pages = ['fairy.html', 'home.html', 'rank.html', 'cheer.html'];
+
+        function switchTab(index, btn) {
+            // 1. 하단 메뉴 인디케이터 및 색상 변경 애니메이션
+            const indicator = document.getElementById('nav-indicator');
+            indicator.style.width = `${btn.offsetWidth}px`;
+            indicator.style.transform = `translateX(${btn.offsetLeft - 4}px)`;
+            
+            const buttons = document.querySelectorAll('#bottom-nav button');
+            buttons.forEach((b, i) => {
+                const icon = b.querySelector('i');
+                const text = b.querySelector('span');
+                if (i === index) {
+                    icon.className = `fa-solid ${['fa-wand-magic-sparkles', 'fa-house', 'fa-trophy', 'fa-headphones'][i]} text-base text-white`;
+                    text.className = `text-[10px] font-bold text-white`;
+                } else {
+                    icon.className = `fa-solid ${['fa-wand-magic-sparkles', 'fa-house', 'fa-trophy', 'fa-headphones'][i]} text-base text-gray-400`;
+                    text.className = `text-[10px] font-medium text-gray-400`;
+                }
+            });
+
+            // 2. 외부 HTML 파일(페이지) 불러오기
+            const container = document.getElementById('content-container');
+            
+            // 로딩 중 표시
+            container.innerHTML = `<div class="flex h-full items-center justify-center"><i class="fa-solid fa-spinner fa-spin text-gray-500 text-3xl"></i></div>`;
+
+            // fetch를 이용해 파일 내용 가져오기
+            fetch(pages[index])
+                .then(response => {
+                    if (!response.ok) throw new Error('파일을 찾을 수 없습니다.');
+                    return response.text();
+                })
+                .then(html => {
+                    // 가져온 파일의 내용을 메인 화면에 덮어쓰기
+                    container.innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    container.innerHTML = `<div class="flex h-full flex-col items-center justify-center text-gray-500 gap-3"><i class="fa-solid fa-triangle-exclamation text-4xl mb-1"></i><span class="text-sm font-medium">${pages[index]} 파일을 불러올 수 없습니다.</span><span class="text-[10px]">로컬 서버나 웹 호스팅 환경에서 실행해주세요.</span></div>`;
+                });
+        }
+
+        // 앱이 처음 켜졌을 때 첫 번째 탭(요정)을 자동으로 클릭된 상태로 만듦
+        window.addEventListener('DOMContentLoaded', () => {
+            const firstBtn = document.querySelectorAll('#bottom-nav button')[0];
+            switchTab(0, firstBtn);
+        });
+    </script>
+</body>
+</html>
