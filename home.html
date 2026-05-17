@@ -1,150 +1,238 @@
 <!-- home.html -->
-<div class="w-full h-full flex flex-col items-center pt-8 pb-[100px] overflow-y-auto scrollbar-hide">
+<div class="w-full min-h-full flex flex-col pt-8 pb-28 px-5 overflow-y-auto scrollbar-hide relative">
     
     <!-- 상단 헤더 -->
-    <div class="w-[90%] max-w-[380px] flex justify-between items-center mb-4">
-        <div class="flex flex-col">
-            <h1 class="text-[22px] font-black text-white tracking-tight">오늘의 야구</h1>
-            <span class="text-[12px] text-gray-400 font-medium">2026년 5월 17일 (일)</span>
+    <header class="flex justify-between items-end mb-6">
+        <div class="flex flex-col gap-1">
+            <span class="text-[#EA0029] font-black text-[12px] tracking-widest uppercase">Today's Game</span>
+            <h1 class="text-3xl font-black text-white tracking-tighter">오늘의 야구</h1>
         </div>
-        <button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white active:scale-95 transition-transform">
-            <i class="fa-regular fa-calendar-check text-[15px]"></i>
-        </button>
-    </div>
+        <div class="text-right">
+            <span class="text-gray-400 text-[13px] font-bold bg-white/5 px-3 py-1.5 rounded-full border border-white/5">5월 17일 (일)</span>
+        </div>
+    </header>
 
-    <!-- 스코어보드 카드 (오늘의 메인 경기) -->
-    <div class="w-[90%] max-w-[380px] bg-gradient-to-b from-[#1C1C1E] to-[#151515] rounded-[28px] border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.5)] p-5 relative overflow-hidden">
-        
-        <!-- 상태 뱃지 -->
-        <div class="flex justify-between items-center mb-5">
-            <span class="bg-[#EA0029]/10 text-[#EA0029] border border-[#EA0029]/30 text-[10px] font-black px-2.5 py-1 rounded-md tracking-widest flex items-center gap-1.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#EA0029] animate-pulse"></span>LIVE 5회초
+    <!-- 프리미엄 스코어보드 카드 -->
+    <section class="w-full bg-[#111113] rounded-[32px] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] relative overflow-hidden flex flex-col">
+        <!-- 배경 데코레이션 (은은한 빛) -->
+        <div class="absolute -top-16 -left-16 w-48 h-48 bg-[#C30452] rounded-full mix-blend-screen filter blur-[70px] opacity-20 pointer-events-none"></div>
+        <div class="absolute -bottom-16 -right-16 w-48 h-48 bg-[#EA0029] rounded-full mix-blend-screen filter blur-[70px] opacity-20 pointer-events-none"></div>
+
+        <!-- 카드 상단: 상태 및 구장 -->
+        <div class="flex justify-between items-center px-6 py-4 border-b border-white/5 z-10">
+            <div class="flex items-center gap-2">
+                <span class="relative flex h-2.5 w-2.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EA0029] opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#EA0029]"></span>
+                </span>
+                <span class="text-[#EA0029] font-black text-[11px] tracking-widest">LIVE 5회초</span>
+            </div>
+            <span class="text-gray-500 font-bold text-[11px] flex items-center gap-1.5">
+                <i class="fa-solid fa-location-dot text-gray-600"></i> 광주 기아챔피언스필드
             </span>
-            <span class="text-[11px] text-gray-400 font-bold tracking-tight"><i class="fa-solid fa-location-dot mr-1 text-gray-500"></i>광주 챔피언스필드</span>
         </div>
 
-        <!-- 점수 영역 -->
-        <div class="flex justify-between items-center mb-6 px-2">
-            <!-- 어웨이 팀 -->
-            <div class="flex flex-col items-center w-[30%]">
-                <div class="w-14 h-14 bg-white/5 rounded-full border border-white/10 flex items-center justify-center mb-2 shadow-inner">
-                    <img src="https://cdn.jsdelivr.net/gh/won429/enjoy_ballbase@main/lgtwins.png" class="w-10 h-10 object-contain drop-shadow-md">
+        <!-- 메인 스코어 영역 -->
+        <div class="flex justify-between items-center px-6 py-8 z-10">
+            <!-- AWAY 팀 (LG) -->
+            <div class="flex flex-col items-center gap-2 w-[30%]">
+                <div class="w-16 h-16 bg-gradient-to-br from-white/10 to-transparent rounded-full p-0.5 shadow-lg border border-white/10">
+                    <div class="w-full h-full bg-[#1A1A1C] rounded-full flex items-center justify-center overflow-hidden">
+                        <img src="https://cdn.jsdelivr.net/gh/won429/enjoy_ballbase@main/lgtwins.png" class="w-11 h-11 object-contain drop-shadow-md">
+                    </div>
                 </div>
-                <span class="text-white font-black text-[16px]">LG</span>
-                <span class="text-gray-500 text-[9px] font-bold tracking-widest mt-0.5">AWAY</span>
-            </div>
-            
-            <!-- 중앙 스코어 -->
-            <div class="w-[40%] flex flex-col items-center justify-center">
-                <div class="flex items-center justify-center gap-3">
-                    <span class="text-[40px] font-black text-white leading-none tracking-tighter">2</span>
-                    <span class="text-lg text-gray-600 font-black mb-1">:</span>
-                    <span class="text-[40px] font-black text-[#EA0029] leading-none tracking-tighter drop-shadow-[0_0_10px_rgba(234,0,41,0.5)]">5</span>
-                </div>
-                <!-- 볼카운트 표시 -->
-                <div class="flex items-center gap-2 mt-2">
-                    <div class="flex gap-0.5"><div class="w-1.5 h-1.5 rounded-full bg-green-500"></div><div class="w-1.5 h-1.5 rounded-full bg-gray-600"></div><div class="w-1.5 h-1.5 rounded-full bg-gray-600"></div></div>
-                    <div class="flex gap-0.5"><div class="w-1.5 h-1.5 rounded-full bg-yellow-400"></div><div class="w-1.5 h-1.5 rounded-full bg-yellow-400"></div></div>
-                    <div class="flex gap-0.5"><div class="w-1.5 h-1.5 rounded-full bg-red-500"></div><div class="w-1.5 h-1.5 rounded-full bg-gray-600"></div></div>
+                <div class="flex flex-col items-center">
+                    <span class="text-xl font-black text-white tracking-tight drop-shadow-sm">LG</span>
+                    <span class="text-gray-500 text-[9px] font-black tracking-widest mt-0.5">AWAY</span>
                 </div>
             </div>
             
-            <!-- 홈 팀 -->
-            <div class="flex flex-col items-center w-[30%]">
-                <div class="w-14 h-14 bg-white/5 rounded-full border border-white/10 flex items-center justify-center mb-2 shadow-inner">
-                    <img src="https://cdn.jsdelivr.net/gh/won429/enjoy_ballbase@main/kia_logoo.png" class="w-10 h-10 object-contain drop-shadow-md">
+            <!-- 중앙 점수 & 볼카운트 -->
+            <div class="flex flex-col items-center justify-center w-[40%] gap-4 mt-2">
+                <div class="flex items-center justify-center gap-4">
+                    <span class="text-[44px] font-black text-white leading-none tracking-tighter w-10 text-right">2</span>
+                    <div class="flex flex-col gap-1.5 opacity-50 pb-1">
+                        <div class="w-1 h-1 bg-white rounded-full"></div>
+                        <div class="w-1 h-1 bg-white rounded-full"></div>
+                    </div>
+                    <span class="text-[44px] font-black text-[#EA0029] leading-none tracking-tighter drop-shadow-[0_0_15px_rgba(234,0,41,0.5)] w-10 text-left">5</span>
                 </div>
-                <span class="text-white font-black text-[16px]">KIA</span>
-                <span class="text-[#EA0029] text-[9px] font-bold tracking-widest mt-0.5">HOME</span>
+                
+                <!-- B S O & 베이스 -->
+                <div class="flex items-center gap-4 bg-black/40 px-4 py-2 rounded-2xl border border-white/5">
+                    <!-- Base Indicator -->
+                    <div class="relative w-6 h-6 mr-1">
+                        <div class="absolute top-[2px] left-[10px] w-2 h-2 bg-yellow-400 rotate-45 shadow-[0_0_5px_#facc15]"></div> <!-- 2루 -->
+                        <div class="absolute top-[10px] left-[2px] w-2 h-2 bg-gray-600 rotate-45"></div> <!-- 3루 -->
+                        <div class="absolute top-[10px] left-[18px] w-2 h-2 bg-yellow-400 rotate-45 shadow-[0_0_5px_#facc15]"></div> <!-- 1루 -->
+                    </div>
+                    <!-- Counts -->
+                    <div class="flex flex-col gap-1.5">
+                        <div class="flex items-center gap-1.5"><span class="text-[8px] font-black text-green-500 w-2">B</span><div class="flex gap-1"><div class="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_4px_#22c55e]"></div><div class="w-1.5 h-1.5 rounded-full bg-gray-700"></div><div class="w-1.5 h-1.5 rounded-full bg-gray-700"></div></div></div>
+                        <div class="flex items-center gap-1.5"><span class="text-[8px] font-black text-yellow-500 w-2">S</span><div class="flex gap-1"><div class="w-1.5 h-1.5 rounded-full bg-yellow-400 shadow-[0_0_4px_#facc15]"></div><div class="w-1.5 h-1.5 rounded-full bg-yellow-400 shadow-[0_0_4px_#facc15]"></div></div></div>
+                        <div class="flex items-center gap-1.5"><span class="text-[8px] font-black text-red-500 w-2">O</span><div class="flex gap-1"><div class="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_4px_#ef4444]"></div><div class="w-1.5 h-1.5 rounded-full bg-gray-700"></div></div></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- HOME 팀 (KIA) -->
+            <div class="flex flex-col items-center gap-2 w-[30%]">
+                <div class="w-16 h-16 bg-gradient-to-br from-[#EA0029]/40 to-transparent rounded-full p-0.5 shadow-lg border border-[#EA0029]/30">
+                    <div class="w-full h-full bg-[#1A1A1C] rounded-full flex items-center justify-center overflow-hidden relative">
+                        <div class="absolute inset-0 bg-[#EA0029]/10"></div>
+                        <img src="https://cdn.jsdelivr.net/gh/won429/enjoy_ballbase@main/kia_logoo.png" class="w-11 h-11 object-contain drop-shadow-md relative z-10">
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-xl font-black text-white tracking-tight drop-shadow-sm">KIA</span>
+                    <span class="text-[#EA0029] text-[9px] font-black tracking-widest mt-0.5 drop-shadow-sm">HOME</span>
+                </div>
             </div>
         </div>
 
-        <!-- 라인업 보기 버튼 -->
-        <button onclick="document.getElementById('lineup-modal').classList.remove('hidden')" class="w-full py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl text-[13px] font-bold text-white transition-all active:scale-[0.98] shadow-sm flex items-center justify-center gap-2">
-            <i class="fa-solid fa-list-ul text-gray-400"></i> 양 팀 라인업 확인
-        </button>
-    </div>
+        <!-- 하단: 투수 정보 및 라인업 버튼 -->
+        <div class="px-5 pb-5 z-10">
+            <div class="flex justify-between items-center bg-white/5 rounded-2xl p-3 mb-3 border border-white/5">
+                <div class="flex items-center gap-2.5 w-[45%]">
+                    <div class="w-8 h-8 rounded-full bg-[#222] border border-white/10 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-baseball text-gray-500 text-[11px]"></i>
+                    </div>
+                    <div class="flex flex-col overflow-hidden">
+                        <span class="text-[12px] font-bold text-white truncate">엔스</span>
+                        <span class="text-[10px] text-gray-400 font-medium">투구수 82</span>
+                    </div>
+                </div>
+                <div class="w-px h-6 bg-white/10 shrink-0"></div>
+                <div class="flex items-center justify-end gap-2.5 w-[45%] text-right">
+                    <div class="flex flex-col overflow-hidden">
+                        <span class="text-[12px] font-bold text-white truncate">네일</span>
+                        <span class="text-[10px] text-gray-400 font-medium">투구수 76</span>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-[#222] border border-[#EA0029]/30 flex items-center justify-center shrink-0 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[#EA0029]/10"></div>
+                        <i class="fa-solid fa-baseball text-[#EA0029] text-[11px] opacity-80"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 라인업 모달 열기 버튼 (작동 보장) -->
+            <button onclick="document.getElementById('lineup-modal').classList.remove('hidden'); document.getElementById('lineup-modal').classList.add('flex');" class="w-full py-3.5 bg-gradient-to-r from-[#2A2A2E] to-[#1C1C1E] hover:from-[#333] hover:to-[#222] border border-white/10 rounded-xl text-[13px] font-bold text-white transition-all active:scale-[0.98] shadow-lg flex items-center justify-center gap-2.5">
+                <i class="fa-solid fa-clipboard-user text-[#EA0029]"></i> 양 팀 선발 라인업 확인
+            </button>
+        </div>
+    </section>
 
     <!-- 주간 일정 리스트 -->
-    <div class="w-[90%] max-w-[380px] mt-8 flex flex-col gap-3">
-        <div class="flex justify-between items-end mb-1">
-            <h2 class="text-[16px] font-bold text-white">이번 주 일정</h2>
-            <button class="text-[11px] font-bold text-gray-400 bg-white/5 px-3 py-1 rounded-full border border-white/10 active:scale-95">전체 일정 보기</button>
+    <section class="w-full mt-10 flex flex-col gap-4">
+        <div class="flex justify-between items-end mb-1 px-1">
+            <h2 class="text-[18px] font-black text-white tracking-tight">이번 주 경기 일정</h2>
+            <button class="text-[11px] font-bold text-gray-400 bg-transparent hover:text-white transition-colors flex items-center gap-1 active:scale-95">
+                전체보기 <i class="fa-solid fa-chevron-right text-[9px]"></i>
+            </button>
         </div>
 
-        <!-- 지난 경기 (종료) -->
-        <div class="bg-[#1C1C1E]/60 rounded-2xl p-4 border border-white/5 flex justify-between items-center opacity-70">
-            <div class="flex flex-col gap-1.5">
-                <span class="text-[10px] text-gray-400 font-bold tracking-tight">5. 16 (토) 17:00</span>
-                <div class="flex items-center gap-2.5">
-                    <span class="text-white font-black text-[14px]">삼성 <span class="text-gray-500 font-medium ml-1">4</span></span>
-                    <span class="text-[10px] text-gray-600 font-bold">vs</span>
-                    <span class="text-point font-black text-[14px]"><span class="text-gray-500 font-medium mr-1">7</span> KIA</span>
+        <!-- 종료된 경기 -->
+        <div class="bg-[#151515] rounded-3xl p-4 border border-white/5 flex flex-col gap-3 opacity-60">
+            <div class="flex justify-between items-center px-1">
+                <span class="text-[11px] text-gray-400 font-bold tracking-widest">5. 16 (토) 17:00</span>
+                <span class="text-[10px] font-black text-gray-500 bg-gray-800 px-2 py-0.5 rounded-sm border border-gray-700">종료</span>
+            </div>
+            <div class="flex justify-between items-center bg-black/30 rounded-2xl p-3 border border-white/5">
+                <div class="flex items-center gap-3 w-[40%]">
+                    <img src="https://cdn.jsdelivr.net/gh/won429/enjoy_ballbase@main/samsung_logo.png" class="w-7 h-7 object-contain grayscale opacity-70">
+                    <span class="text-[15px] font-bold text-gray-400">삼성</span>
+                </div>
+                <div class="flex justify-center items-center gap-2 w-[20%]">
+                    <span class="text-[18px] font-black text-gray-500">4</span>
+                    <span class="text-xs text-gray-700 mb-0.5">:</span>
+                    <span class="text-[18px] font-black text-white drop-shadow-sm">7</span>
+                </div>
+                <div class="flex items-center justify-end gap-3 w-[40%]">
+                    <span class="text-[15px] font-bold text-white drop-shadow-sm">KIA</span>
+                    <img src="https://cdn.jsdelivr.net/gh/won429/enjoy_ballbase@main/kia_logoo.png" class="w-7 h-7 object-contain">
                 </div>
             </div>
-            <span class="bg-gray-700/50 border border-gray-600/50 text-gray-300 text-[10px] font-bold px-2 py-1 rounded-md">경기종료</span>
         </div>
         
-        <!-- 예정된 경기 (경기전) -->
-        <div class="bg-[#1C1C1E]/80 rounded-2xl p-4 border border-white/5 flex justify-between items-center active:scale-[0.98] transition-transform cursor-pointer">
-            <div class="flex flex-col gap-1.5">
-                <span class="text-[10px] text-[#074CA1] font-bold tracking-tight">5. 18 (월) 18:30</span>
-                <div class="flex items-center gap-2.5">
-                    <span class="text-white font-black text-[14px]">KIA</span>
-                    <span class="text-[10px] text-gray-500 font-bold">vs</span>
-                    <span class="text-white font-black text-[14px]">삼성</span>
+        <!-- 예정된 경기 -->
+        <div class="bg-[#151515] rounded-3xl p-4 border border-white/10 flex flex-col gap-3 shadow-lg hover:border-white/20 transition-colors active:scale-[0.98] cursor-pointer">
+            <div class="flex justify-between items-center px-1">
+                <span class="text-[11px] text-white font-black tracking-widest">5. 18 (월) 18:30</span>
+                <span class="text-[10px] font-black text-[#074CA1] bg-[#074CA1]/10 px-2 py-0.5 rounded-sm border border-[#074CA1]/30">예정</span>
+            </div>
+            <div class="flex justify-between items-center bg-white/5 rounded-2xl p-3 border border-white/5">
+                <div class="flex items-center gap-3 w-[40%]">
+                    <img src="https://cdn.jsdelivr.net/gh/won429/enjoy_ballbase@main/kia_logoo.png" class="w-7 h-7 object-contain">
+                    <span class="text-[15px] font-bold text-white">KIA</span>
+                </div>
+                <div class="flex justify-center items-center gap-2 w-[20%]">
+                    <span class="text-[18px] font-black text-gray-600 tracking-widest">VS</span>
+                </div>
+                <div class="flex items-center justify-end gap-3 w-[40%]">
+                    <span class="text-[15px] font-bold text-white">삼성</span>
+                    <img src="https://cdn.jsdelivr.net/gh/won429/enjoy_ballbase@main/samsung_logo.png" class="w-7 h-7 object-contain">
                 </div>
             </div>
-            <span class="bg-blue-600/20 text-blue-400 border border-blue-600/30 text-[10px] font-bold px-2 py-1 rounded-md">예정</span>
         </div>
-    </div>
+    </section>
 
-    <!-- 라인업 모달 팝업 (초기 숨김 상태) -->
-    <div id="lineup-modal" class="hidden fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-end justify-center transition-opacity">
-        <div class="bg-[#151515] w-full max-w-[430px] h-[85vh] rounded-t-[32px] border-t border-white/10 flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+    <!-- 라인업 팝업 모달 (작동 보장) -->
+    <!-- hidden 제거하고 flex 추가하면 보임. z-index를 최상위로 올림. -->
+    <div id="lineup-modal" class="hidden fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm items-center justify-center p-5 transition-opacity duration-300">
+        
+        <div class="bg-[#151515] w-full max-w-[380px] rounded-[32px] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col relative animate-fade-in-up">
             
-            <!-- 팝업 헤더 -->
-            <div class="flex justify-between items-center px-6 py-5 border-b border-white/5">
-                <h2 class="text-[16px] font-black text-white tracking-tight">LG vs KIA 라인업</h2>
-                <button onclick="document.getElementById('lineup-modal').classList.add('hidden')" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-gray-400 active:scale-95 transition-transform"><i class="fa-solid fa-xmark"></i></button>
+            <!-- 닫기 버튼 (작동 보장) -->
+            <button onclick="document.getElementById('lineup-modal').classList.remove('flex'); document.getElementById('lineup-modal').classList.add('hidden');" class="absolute top-5 right-5 w-8 h-8 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-gray-300 active:scale-95 transition-all z-20">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- 팝업 헤더 타이틀 -->
+            <div class="pt-7 pb-4 px-6 border-b border-white/5 bg-[#1A1A1C] relative z-10">
+                <h2 class="text-lg font-black text-white tracking-tight flex items-center gap-2">
+                    <i class="fa-solid fa-clipboard-user text-[#EA0029]"></i> 선발 라인업
+                </h2>
+                <span class="text-xs text-gray-500 font-medium mt-1 block">5. 17 (일) LG 트윈스 vs KIA 타이거즈</span>
             </div>
             
-            <!-- 팝업 내용 -->
-            <div class="flex-1 overflow-y-auto px-6 py-5 scrollbar-hide flex gap-4">
+            <!-- 라인업 내용 영역 -->
+            <div class="p-6 flex gap-6 max-h-[60vh] overflow-y-auto scrollbar-hide relative z-10 bg-[#111113]">
                 
-                <!-- AWAY 라인업 -->
-                <div class="w-1/2 flex flex-col">
-                    <div class="flex items-center gap-2 mb-4">
-                        <img src="https://cdn.jsdelivr.net/gh/won429/enjoy_ballbase@main/lgtwins.png" class="w-6 h-6 object-contain">
-                        <span class="text-[13px] font-bold text-gray-300">LG 선발</span>
+                <!-- AWAY: LG 라인업 -->
+                <div class="flex-1 flex flex-col">
+                    <div class="flex items-center gap-2 mb-5 pb-2 border-b border-white/10">
+                        <img src="https://cdn.jsdelivr.net/gh/won429/enjoy_ballbase@main/lgtwins.png" class="w-6 h-6 object-contain drop-shadow-md">
+                        <span class="text-[15px] font-black text-white tracking-wider">LG</span>
                     </div>
-                    <div class="flex flex-col gap-3">
-                        <div class="flex justify-between text-[12px]"><span class="text-white font-bold"><span class="text-gray-500 mr-1.5 text-[10px]">1</span>홍창기</span><span class="text-gray-500 text-[10px]">우익</span></div>
-                        <div class="flex justify-between text-[12px]"><span class="text-white font-bold"><span class="text-gray-500 mr-1.5 text-[10px]">2</span>문성주</span><span class="text-gray-500 text-[10px]">좌익</span></div>
-                        <div class="flex justify-between text-[12px]"><span class="text-white font-bold"><span class="text-gray-500 mr-1.5 text-[10px]">3</span>김현수</span><span class="text-gray-500 text-[10px]">지명</span></div>
-                        <div class="flex justify-between text-[12px]"><span class="text-white font-bold"><span class="text-gray-500 mr-1.5 text-[10px]">4</span>오스틴</span><span class="text-gray-500 text-[10px]">1루</span></div>
-                        <div class="flex justify-between text-[12px]"><span class="text-white font-bold"><span class="text-gray-500 mr-1.5 text-[10px]">5</span>문보경</span><span class="text-gray-500 text-[10px]">3루</span></div>
-                        <div class="w-full h-px bg-white/10 my-1"></div>
-                        <div class="flex justify-between text-[12px]"><span class="text-white font-bold"><span class="text-blue-400 font-black mr-1.5 text-[10px]">P</span>엔스</span><span class="text-gray-500 text-[10px]">투수</span></div>
+                    <ul class="flex flex-col gap-3.5">
+                        <li class="flex items-center justify-between"><div class="flex items-center gap-2.5"><span class="text-gray-500 font-black text-[11px] w-3 text-center">1</span><span class="text-[13px] font-bold text-gray-200">홍창기</span></div><span class="text-[10px] text-gray-500 font-bold bg-white/5 px-1.5 py-0.5 rounded">우익</span></li>
+                        <li class="flex items-center justify-between"><div class="flex items-center gap-2.5"><span class="text-gray-500 font-black text-[11px] w-3 text-center">2</span><span class="text-[13px] font-bold text-gray-200">문성주</span></div><span class="text-[10px] text-gray-500 font-bold bg-white/5 px-1.5 py-0.5 rounded">좌익</span></li>
+                        <li class="flex items-center justify-between"><div class="flex items-center gap-2.5"><span class="text-gray-500 font-black text-[11px] w-3 text-center">3</span><span class="text-[13px] font-bold text-gray-200">김현수</span></div><span class="text-[10px] text-gray-500 font-bold bg-white/5 px-1.5 py-0.5 rounded">지명</span></li>
+                        <li class="flex items-center justify-between"><div class="flex items-center gap-2.5"><span class="text-gray-500 font-black text-[11px] w-3 text-center">4</span><span class="text-[13px] font-bold text-gray-200">오스틴</span></div><span class="text-[10px] text-gray-500 font-bold bg-white/5 px-1.5 py-0.5 rounded">1루</span></li>
+                        <li class="flex items-center justify-between"><div class="flex items-center gap-2.5"><span class="text-gray-500 font-black text-[11px] w-3 text-center">5</span><span class="text-[13px] font-bold text-gray-200">문보경</span></div><span class="text-[10px] text-gray-500 font-bold bg-white/5 px-1.5 py-0.5 rounded">3루</span></li>
+                    </ul>
+                    <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+                        <div class="flex items-center gap-2.5"><span class="text-blue-500 font-black text-[12px] w-3 text-center">P</span><span class="text-[13px] font-black text-white drop-shadow-sm">엔스</span></div>
                     </div>
                 </div>
 
-                <div class="w-px bg-white/5 shrink-0"></div>
+                <div class="w-px bg-gradient-to-b from-transparent via-white/10 to-transparent shrink-0"></div>
 
-                <!-- HOME 라인업 -->
-                <div class="w-1/2 flex flex-col">
-                    <div class="flex items-center gap-2 mb-4">
-                        <img src="https://cdn.jsdelivr.net/gh/won429/enjoy_ballbase@main/kia_logoo.png" class="w-6 h-6 object-contain">
-                        <span class="text-[13px] font-bold text-gray-300">KIA 선발</span>
+                <!-- HOME: KIA 라인업 -->
+                <div class="flex-1 flex flex-col">
+                    <div class="flex items-center gap-2 mb-5 pb-2 border-b border-white/10">
+                        <img src="https://cdn.jsdelivr.net/gh/won429/enjoy_ballbase@main/kia_logoo.png" class="w-6 h-6 object-contain drop-shadow-md">
+                        <span class="text-[15px] font-black text-white tracking-wider">KIA</span>
                     </div>
-                    <div class="flex flex-col gap-3">
-                        <div class="flex justify-between text-[12px]"><span class="text-white font-bold"><span class="text-gray-500 mr-1.5 text-[10px]">1</span>박찬호</span><span class="text-gray-500 text-[10px]">유격</span></div>
-                        <div class="flex justify-between text-[12px]"><span class="text-white font-bold"><span class="text-gray-500 mr-1.5 text-[10px]">2</span>김도영</span><span class="text-gray-500 text-[10px]">3루</span></div>
-                        <div class="flex justify-between text-[12px]"><span class="text-white font-bold"><span class="text-gray-500 mr-1.5 text-[10px]">3</span>나성범</span><span class="text-gray-500 text-[10px]">우익</span></div>
-                        <div class="flex justify-between text-[12px]"><span class="text-white font-bold"><span class="text-gray-500 mr-1.5 text-[10px]">4</span>최형우</span><span class="text-gray-500 text-[10px]">지명</span></div>
-                        <div class="flex justify-between text-[12px]"><span class="text-white font-bold"><span class="text-gray-500 mr-1.5 text-[10px]">5</span>소크라테스</span><span class="text-gray-500 text-[10px]">중견</span></div>
-                        <div class="w-full h-px bg-white/10 my-1"></div>
-                        <div class="flex justify-between text-[12px]"><span class="text-white font-bold"><span class="text-red-400 font-black mr-1.5 text-[10px]">P</span>네일</span><span class="text-gray-500 text-[10px]">투수</span></div>
+                    <ul class="flex flex-col gap-3.5">
+                        <li class="flex items-center justify-between"><div class="flex items-center gap-2.5"><span class="text-[#EA0029] font-black text-[11px] w-3 text-center">1</span><span class="text-[13px] font-bold text-gray-200">박찬호</span></div><span class="text-[10px] text-gray-500 font-bold bg-white/5 px-1.5 py-0.5 rounded">유격</span></li>
+                        <li class="flex items-center justify-between"><div class="flex items-center gap-2.5"><span class="text-[#EA0029] font-black text-[11px] w-3 text-center">2</span><span class="text-[13px] font-bold text-gray-200">김도영</span></div><span class="text-[10px] text-gray-500 font-bold bg-white/5 px-1.5 py-0.5 rounded">3루</span></li>
+                        <li class="flex items-center justify-between"><div class="flex items-center gap-2.5"><span class="text-[#EA0029] font-black text-[11px] w-3 text-center">3</span><span class="text-[13px] font-bold text-gray-200">나성범</span></div><span class="text-[10px] text-gray-500 font-bold bg-white/5 px-1.5 py-0.5 rounded">우익</span></li>
+                        <li class="flex items-center justify-between"><div class="flex items-center gap-2.5"><span class="text-[#EA0029] font-black text-[11px] w-3 text-center">4</span><span class="text-[13px] font-bold text-gray-200">최형우</span></div><span class="text-[10px] text-gray-500 font-bold bg-white/5 px-1.5 py-0.5 rounded">지명</span></li>
+                        <li class="flex items-center justify-between"><div class="flex items-center gap-2.5"><span class="text-[#EA0029] font-black text-[11px] w-3 text-center">5</span><span class="text-[13px] font-bold text-gray-200">소크라테스</span></div><span class="text-[10px] text-gray-500 font-bold bg-white/5 px-1.5 py-0.5 rounded">중견</span></li>
+                    </ul>
+                    <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+                        <div class="flex items-center gap-2.5"><span class="text-[#EA0029] font-black text-[12px] w-3 text-center">P</span><span class="text-[13px] font-black text-white drop-shadow-sm">네일</span></div>
                     </div>
                 </div>
 
@@ -152,3 +240,14 @@
         </div>
     </div>
 </div>
+
+<!-- 간단한 모달 등장 애니메이션용 CSS -->
+<style>
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up {
+        animation: fadeInUp 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+</style>
