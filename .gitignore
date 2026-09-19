@@ -1,0 +1,9 @@
+.DS_Store
+.build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+
+# Keep source control focused on the current release package.
+dist/*.zip
+!dist/Nook-2.1.2.zip
